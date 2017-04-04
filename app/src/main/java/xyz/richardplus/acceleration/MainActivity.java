@@ -85,6 +85,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         lineChartX = (LineChart) findViewById(R.id.lineChartX);
         lineChartY = (LineChart) findViewById(R.id.lineChartY);
         lineChartZ = (LineChart) findViewById(R.id.lineChartZ);
+        /**
+         *I have add something in dev branch and commit
+         *
+         */
     }
 
     @Override
