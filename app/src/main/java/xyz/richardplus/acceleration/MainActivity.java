@@ -106,11 +106,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             textviewZ.setText(String.format("z轴:%1.2f,m/s²", zValue));
             getState(); //手机状态
             if (recording) {
-                writeMessage();// 写入message 字符串
+                writeMessage();// 写入message 字符串g
             }
         }
-
-
     }
 
     @Override
