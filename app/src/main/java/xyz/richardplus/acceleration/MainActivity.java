@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     int ACCE_FILTER_DATA_MIN_TIME = 500;
     long lastSaved = System.currentTimeMillis();
     //设置文本显示
-    private TextView textviewX, textviewY, textviewZ, phoneStatus, setFreq;
+    private TextView textviewX, textviewY, textviewZ, phoneStatus, setFreq,readBuffer;
     //文本输入框
     private EditText getName;
 
@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     //绘图点数
     private int point = 0;
+
+//    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) readBuffer.getLayoutParams();
+//    LinearLayout.LayoutParams paramsX = (LinearLayout.LayoutParams) lineChartX.getLayoutParams();
+//    LinearLayout.LayoutParams paramsY = (LinearLayout.LayoutParams) lineChartY.getLayoutParams();
+//    LinearLayout.LayoutParams paramsZ = (LinearLayout.LayoutParams) lineChartZ.getLayoutParams();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         textviewY = (TextView) findViewById(R.id.textviewY);
         textviewZ = (TextView) findViewById(R.id.textviewZ);
         phoneStatus = (TextView) findViewById(R.id.phoneStatus);
+        readBuffer = (TextView) findViewById(R.id.readBuffer);
         getName = (EditText) findViewById(R.id.edit_message);
         setFreq = (TextView) findViewById(R.id.edit_freq);
 
@@ -228,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     Toast.makeText(this, String.format("已保存在 根目录/Acc/%s%d.txt", filename, count++), Toast.LENGTH_SHORT).show();
                 } else Toast.makeText(this, "请输入文件名", Toast.LENGTH_SHORT).show();
             case R.id.btnRead: //读取按钮
-                // TODO: 2017/4/2
+
                 break;
             case R.id.btnUp:
                 if (freq == 2) {

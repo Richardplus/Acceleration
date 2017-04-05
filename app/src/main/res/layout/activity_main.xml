@@ -6,6 +6,15 @@
     tools:context="xyz.richardplus.acceleration.MainActivity"
     android:background="@color/primary"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/readBuffer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0"
+        android:text=""
+        android:background="@android:color/white"
+        android:scrollbars="vertical"
+        android:textSize="15sp" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChartX"
@@ -23,7 +32,8 @@
     </com.github.mikephil.charting.charts.LineChart>
 
     <LinearLayout
-        style="@style/LLayout">
+        style="@style/LLayout"
+        android:layout_weight="0.8">
         <TextView
             android:id="@+id/textviewX"
             style="@style/ShowAcc"
@@ -48,7 +58,7 @@
         style="@style/LLayout">
 
         <TextView
-            android:id="@+id/textviewF"
+            android:id="@+id/phoneStatus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -80,7 +90,7 @@
             android:layout_margin="5dp"
             android:background="@color/primary_dark"
             android:gravity="center"
-            android:hint="@string/slow"
+            android:hint="@string/medium"
             android:textSize="15sp" />
         <Button
             android:id="@+id/btnDown"
@@ -96,7 +106,6 @@
         style="@style/LLayout">
 
         <TextView
-            android:id="@+id/phoneStatus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -127,7 +136,7 @@
 
     <LinearLayout
         style="@style/LLayout"
-        android:layout_weight="2">
+        android:layout_weight="1.5">
         <Button
             android:id="@+id/btnToggle"
             style="@style/BottomButton"
