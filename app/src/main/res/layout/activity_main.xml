@@ -6,15 +6,6 @@
     tools:context="xyz.richardplus.acceleration.MainActivity"
     android:background="@color/primary"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/readBuffer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0"
-        android:text=""
-        android:background="@android:color/white"
-        android:scrollbars="vertical"
-        android:textSize="15sp" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChartX"
@@ -129,7 +120,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.8"
-            android:layout_marginRight="10dp"
+            android:layout_margin="10dp"
             android:background="@color/primary_light"
             android:text="@string/start_record" />
     </LinearLayout>
