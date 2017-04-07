@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">加速度计</string>
+    <string name="edit_message">输入文件名</string>
+    <string name="slow">慢</string>
+    <string name="medium">中</string>
+    <string name="fast">快</string>
+    <string name="phone_status">手机状态</string>
+    <string name="record_freq">记录频率</string>
+    <string name="save_as">保存为（txt）:</string>
+    <string name="start_record">开始记录</string>
+    <string name="pause">暂停</string>
+    <string name="save">保存</string>
+    <string name="read">读取</string>
+    <string name="acc">加速度</string>
+    <string name="goback">返回</string>
+</resources>
