@@ -7,7 +7,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -28,8 +27,6 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 
-import java.io.File;
-import java.io.RandomAccessFile;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -72,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     //绘图点数
     private int point = 0;
 
+    private Context mContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setChartAndAxis(lineChartX);
         setChartAndAxis(lineChartY);
         setChartAndAxis(lineChartZ);
+
+        mContext = getApplicationContext();
 
     }
 
@@ -142,12 +143,36 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             textviewX.setText(String.format("x轴:%1.2f,m/s²", xValue));
             textviewY.setText(String.format("y轴:%1.2f,m/s²", yValue));
             textviewZ.setText(String.format("z轴:%1.2f,m/s²", zValue));
-            getState(); //手机状态
+            getState(); //运动状态
+            isComfortableOrNot();
             if (recording) {
                 writeMessage();// 写入message 字符串g
             }
             drawCharts();
+
         }
+    }
+
+    private void isComfortableOrNot() {
+        float xPrevious,yPrevious,zPrevious;
+        if (xValue > 9 && yValue < 10) {
+            phoneStatus.setText("重力指向设备x轴下方");
+        } else if (xValue > -10 && xValue < -9) {
+            phoneStatus.setText("重力指向设备x轴上");
+        }
+        if (yValue > 9 && yValue < 10) {
+            phoneStatus.setText("重力指向设备y轴下方");
+        } else if (yValue > -10 && yValue < -9) {
+            phoneStatus.setText("重力指向设备y轴上方");
+        }
+        if (zValue > 9 && zValue < 10) {
+            phoneStatus.setText("屏幕朝上");
+        } else if (zValue > -10 && zValue < -9) {
+            phoneStatus.setText("屏幕朝下");
+        }
+        xPrevious = xValue;
+        yPrevious = yValue;
+        zPrevious = zValue;
     }
 
     private void drawCharts() {
@@ -227,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 if (!getName.getText().toString().equals("")) {
                     filename = getName.getText().toString();
                     writeFileSdcard(message);
-                    Toast.makeText(this, String.format("已保存在 根目录/%s%d.txt", filename, count++), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, String.format("已保存在 根目录/%s%d.txt", filename, count++), Toast.LENGTH_SHORT).show();
                 } else Toast.makeText(this, "请输入文件名", Toast.LENGTH_SHORT).show();break;
             case R.id.btnRead: //读取按钮
                 Intent it = new Intent(this,Main2Activity.class);
@@ -311,19 +336,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     //写入数据
     private void writeFileSdcard(String message) {
-        try {
-            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                File sdCardDir = Environment.getExternalStorageDirectory();
-                File targitFile = new File(sdCardDir.getCanonicalPath() + "/" + filename + count + ".txt");
-                RandomAccessFile raf = new RandomAccessFile(targitFile, "rw");
-                raf.seek(targitFile.length());
-                raf.write(message.getBytes());
-                raf.close();
-            }
-        } catch (Exception e) {
+        FileHelper sdHelper = new FileHelper(mContext);
+        try
+        {
+            sdHelper.savaFileToSD(filename+".txt", message);
+            Toast.makeText(getApplicationContext(), "数据写入成功", Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception e){
             e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "数据写入失败", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void setChartAndAxis(LineChart lc) {
         lc.setTouchEnabled(true);

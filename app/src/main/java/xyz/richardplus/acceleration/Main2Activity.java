@@ -31,6 +31,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         String data = it.getStringExtra("file_saved");
         readBuffer.setMovementMethod(new ScrollingMovementMethod());
         readBuffer.setText(data);
+
     }
 
     @Override
