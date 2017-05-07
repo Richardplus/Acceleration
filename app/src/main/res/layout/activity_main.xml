@@ -120,7 +120,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.8"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@color/primary_light"
             android:text="@string/start_record" />
     </LinearLayout>

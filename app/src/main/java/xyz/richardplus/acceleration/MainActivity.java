@@ -252,7 +252,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 if (!getName.getText().toString().equals("")) {
                     filename = getName.getText().toString();
                     writeFileSdcard(message);
-//                    Toast.makeText(this, String.format("已保存在 根目录/%s%d.txt", filename, count++), Toast.LENGTH_SHORT).show();
                 } else Toast.makeText(this, "请输入文件名", Toast.LENGTH_SHORT).show();break;
             case R.id.btnRead: //读取按钮
                 Intent it = new Intent(this,Main2Activity.class);
