@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by Richa on 2017/5/6.
  */
-
+//这是sd卡读写的工具类
 public class FileHelper {
     private Context context;
 
